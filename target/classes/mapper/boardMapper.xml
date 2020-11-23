@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 게시판 처리 SQL -->
+<mapper namespace="global.sesoc.teamProject.dao.BoardMapper">
+
+<!-- 게시글 저장 -->
+<insert id="insertBoard" parameterType="board">
+	insert into 
+		locker_board 
+	(
+		boardnum
+		, email
+		, title
+		, contents
+		<if test="originalfile != null and savedfile != null">
+		, originalfile
+		, savedfile
+		</if>
+	)
+	values 
+	(
+		locker_board_seq.nextval
+		, #{email}
+		, #{title}
+		, #{contents}
+		<if test="originalfile != null and savedfile != null">
+		, #{originalfile}
+		, #{savedfile}
+		</if>
+	)
+</insert>
+
+<!-- 게시글 읽기 -->
+<select id="getBoard" parameterType="int" resultType="board">
+	select 
+		boardnum
+		, email
+		, title
+		, contents
+		, to_char(inputdate, 'YYYY-MM-DD HH24:MI:SS') inputdate
+		, originalfile
+		, savedfile
+	from 
+		locker_board
+	where 
+		boardnum = #{boardnum}
+</select>
+
+<!-- 전체 글 개수 (검색 필터링 후) -->
+<select id="getTotal" parameterType="string" resultType="int">
+	select 
+		count(*)
+	from 
+		locker_board 
+	<if test="_parameter != null">
+	where 
+		title like '%' || #{searchText} || '%'
+	</if>
+</select>
+
+<!-- 현재 페이지 목록 (검색 필터링 후) -->
+<select id="listBoard" parameterType="string" resultType="board">
+	select 
+		boardnum
+		, email
+		, title
+		, to_char(inputdate, 'YYYY-MM-DD') inputdate
+	from 
+		locker_board 
+	<if test="_parameter != null">
+	where 
+		title like '%' || #{searchText} || '%'
+	</if>
+	order by boardnum desc
+</select>
+
+
+<!-- 글 삭제 -->
+<delete id="deleteBoard" parameterType="board">
+	delete
+	from
+		locker_board
+	where
+		boardnum = #{boardnum}
+		and email = #{email}
+</delete>
+
+<!-- 글 수정 -->
+<update id="updateBoard" parameterType="board">
+	update
+		locker_board
+	set
+		title = #{title}
+		, contents = #{contents}
+		<if test="originalfile != null and savedfile != null">
+		, originalfile = #{originalfile}
+		, savedfile = #{savedfile}
+		</if>
+	where
+		boardnum = #{boardnum}
+		and email = #{email}
+</update>
+
+</mapper>

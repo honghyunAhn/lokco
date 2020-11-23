@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="global.sesoc.teamProject.vo.MemberVO" alias="member" />
+		<typeAlias type="global.sesoc.teamProject.vo.ReservationVO" alias="reservation" />
+		<typeAlias type="global.sesoc.teamProject.vo.locker_location" alias="location"/>
+		<typeAlias type="global.sesoc.teamProject.vo.locker_info" alias="info"/>
+		<typeAlias type="global.sesoc.teamProject.vo.BoardVO" alias="board"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mapper/memberMapper.xml" />
+		<mapper resource="mapper/reservationMapper.xml" />
+		<mapper resource="mapper/locationMapper.xml" />
+		<mapper resource="mapper/boardMapper.xml" />
+	</mappers>
+</configuration>

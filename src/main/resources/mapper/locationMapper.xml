@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.sesoc.teamProject.dao.locationMapper">
+
+<select id = "listLocation" resultType="location">
+	select *
+	from locker_location
+</select>
+
+<select id = "infolocker" parameterType="String" resultType="info">
+	select *
+	from 
+		locker_info
+	where 
+		locker_name = #{locker_name}
+</select>
+
+<select id="getLocation" parameterType="string">
+
+
+
+
+</select>
+
+
+
+</mapper>

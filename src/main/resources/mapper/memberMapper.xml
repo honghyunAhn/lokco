@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원정보 처리 SQL -->
+<mapper namespace="global.sesoc.teamProject.dao.MemberMapper">
+<insert id="insertMember" parameterType="member">
+insert into
+	member(
+		email
+		,password
+		,name
+		,phone	
+	)values(
+		#{email}
+		,#{password}
+		,#{name}
+		,#{phone}
+	)
+
+</insert>
+
+<!-- 이메일 중복확인 -->
+<select id="doubleCheck" parameterType="string" resultType="int">
+select 
+   count(*) 
+from 
+   member
+where
+   email = #{email}
+</select>
+
+<!-- 회원 정보 -->
+<select id="getMember" parameterType="string" resultType="member">
+select
+	*
+from
+	member
+where
+	email = #{email}
+</select>
+
+<!-- 비회원 이메일 저장 -->
+<insert id="non_memberInsert" parameterType="string">
+insert into 
+	non_member (email) values (#{email})
+</insert>
+
+<!-- 비회원 조회 -->
+<select id="non_login" resultType="int">
+select
+	count(*)
+from 
+	non_member
+where
+	email = #{email2}
+</select>
+
+
+</mapper>
