@@ -77,9 +77,8 @@
 
 3. 예약 : 예약을 클릭하면 락커 이름을 예약 화면으로 넘겨줍니다.
 
-![6](https://user-images.githubusercontent.com/54131117/95626916-2f5ece00-0ab6-11eb-9a91-0450b31b1a97.png)
-
-４. 사물함 표시: DB의 GPS는 varchar로 저장되어 있습니다. 그래서 split을 사용하여 위도와 경도를 나누어서 숫자로 강제 변환하는 것입니다.
+4. 사물함 표시: DB의 GPS는 varchar로 저장되어 있습니다. 그래서 split을 사용하여 위도와 경도를 나누어서 숫자로 강제 변환하는 것입니다. 
+       ![6](https://user-images.githubusercontent.com/54131117/95626916-2f5ece00-0ab6-11eb-9a91-0450b31b1a97.png)
 
 ***
 - **담당분야 : 개인 프로젝트로 만든 사물함 예약 시스템을 수정하여 적용하였습니다.**
